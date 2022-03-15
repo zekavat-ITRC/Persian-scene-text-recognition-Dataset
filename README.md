@@ -1,0 +1,1 @@
+# Persian-scene-text-recognition
