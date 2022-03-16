@@ -70,6 +70,7 @@ with open('imnames.cp', 'rb') as f:
 print(len(filtered_imnames))
 
 images = os.listdir(imfolder_path)
+os.makedirs('./final_dataset', exist_ok=True)
 created = os.listdir('./final_dataset')
 created = ['_'.join(i.split('.')[0].split('_')[:-1]) for i in created if i.split('.')[-1] == 'txt']  # if not i.split('.')[-1] == 'txt']
 format = [".jpg", ".png", ".jpeg"]
