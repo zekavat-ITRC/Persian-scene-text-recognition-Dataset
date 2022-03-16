@@ -133,6 +133,7 @@ for im_name in images:
 
                 reshaped_text = arabic_reshaper.reshape(text)  # correct its shape
                 bidi_text = get_display(reshaped_text) # correct its direction
+                not_bidi_text = text
                 text = bidi_text
                 #
                 # print(text, reshaped_text, bidi_text)
@@ -265,7 +266,7 @@ for im_name in images:
                     start_n = indx + len(word)
 
                     annot_list = boxx.reshape(-1).astype(str).tolist()
-                    annot_list.append(text.split()[-i-1])
+                    annot_list.append(not_bidi_text.split()[-i-1])
                     annot_text = ','.join(annot_list)
                     # print(annot_text)
 
