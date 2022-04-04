@@ -2,3 +2,5 @@
 *.zip filter=lfs diff=lfs merge=lfs -text
 “scene_word_dataset.zip” filter=lfs diff=lfs merge=lfs -text
 scene_word_dataset.zip filter=lfs diff=lfs merge=lfs -text
+scene_text_dataset.zip filter=lfs diff=lfs merge=lfs -text
+scene_text_dataset.z01 filter=lfs diff=lfs merge=lfs -text
