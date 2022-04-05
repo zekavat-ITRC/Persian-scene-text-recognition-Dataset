@@ -11,10 +11,12 @@ We provide two kinds of datasets:
 
 ![sample image of scene text images](scene_text_image.jpg)
 
+
+## Demo for getting background images, creating dataset, reading images and annotation files, displaying images
 The "demo.ipynb" is provided to get background images and using them to create dataset. At the end of this file, images and annotation files are read and use to display images and add a bounding box for each word.
 
 
-# Download our dataset
+## Download our dataset
 We have two datasets:
 
 **a) cropped word images (for text recognition)**
@@ -42,7 +44,7 @@ pip install --upgrade gdown
 gdown --id 1V-r4a1XZVf-3QHcD_4eBBQy6IXQTgvfw
 ```
 
-# Create your own scene text images dataset
+## Create your own scene text images dataset
 To create your own dataset you can run synthText.py and if the shape of text in images is incorrect you can run synthText_forLinux.py instead.
 You can also provide different background images, text source, fonts, and colors.
 If you want to use same background images that we used and provided from [this repository](https://github.com/ankush-me/SynthText), you can try:
@@ -52,7 +54,7 @@ aria2c https://academictorrents.com/download/2dba9518166cbd141534cbf381aa3e99a08
 tar -zxvf bg_img.tar.gz
 ```
 
-# Create your own cropped word images dataset
+## Create your own cropped word images dataset
 To create your own dataset you can run cropped_word_synthText.py
 You can also provide different background images, text source, fonts, and colors.
 If you want to use same background images that we used, see [here](https://github.com/zekavat-ITRC/Persian-scene-text-recognition-Dataset#create-your-own-scene-text-images-dataset).
