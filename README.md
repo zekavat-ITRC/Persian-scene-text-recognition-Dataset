@@ -55,4 +55,4 @@ tar -zxvf bg_img.tar.gz
 # Create your own cropped word images dataset
 To create your own dataset you can run cropped_word_synthText.py
 You can also provide different background images, text source, fonts, and colors.
-If you want to use same background images that we used, see [here](https://github.com/zekavat-ITRC/Persian-scene-text-recognition-Dataset/edit/main/README.md#create-your-own-scene-text-images-dataset).
+If you want to use same background images that we used, see [here](https://github.com/zekavat-ITRC/Persian-scene-text-recognition-Dataset#create-your-own-scene-text-images-dataset).
