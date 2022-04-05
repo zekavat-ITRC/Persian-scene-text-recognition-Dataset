@@ -1,7 +1,6 @@
 import cv2
 import os
 import numpy as np
-# import re
 import arabic_reshaper
 from bidi.algorithm import get_display
 import _pickle as cp
@@ -29,7 +28,6 @@ fonts_ok = []
 for f in fonts:
     try:
         f = os.path.join('./384.Font.Farsi', f)
-        # print(f)
         tmpFont = ImageFont.truetype(f, 30, encoding='unic')
         fonts_ok.append(f)
     except:
@@ -61,9 +59,8 @@ def getRndTxt():
     n_con_words = ' '.join(news.split()[ithWord:ithWord+num_word])
     return n_con_words
 
-imfolder_path = r'E:\alimoradi\image_pred_project\synthtext\bg_img'
 imfolder_path = './bg_img'
-# imfolder_path = './'
+
 
 with open('imnames.cp', 'rb') as f:
   filtered_imnames = set(cp.load(f))
@@ -77,8 +74,6 @@ format = [".jpg", ".png", ".jpeg"]
 num_using_img = 1
 print('start...')
 for im_name in images:
-    # if im_name not in ('wozniak_110.jpg', ):
-    #     continue
     if im_name in ("mesh_42.jpg", "steel_8.jpg", "hubble_44.jpg", "leather_90.jpg", "leather_125.jpg"):
         continue
     if not im_name.lower().endswith(tuple(format)):
@@ -91,7 +86,6 @@ for im_name in images:
     im_path = os.path.join(imfolder_path, im_name)
     for j in range(num_using_img):
         try:
-            # print('\n', im_path)
             image = Image.open(im_path)
             if image.mode in ("RGBA", "P"):
                 image = image.convert("RGB")
@@ -106,11 +100,9 @@ for im_name in images:
             all_annot_text = ''
             num_trying = 0
             while iter < nTextOnImage:
-                # print(iter, nTextOnImage)
                 txt_fn = './final_dataset/{}_{}.txt'.format(im_name.split('.')[0], j)
                 img_fn = '{}_{}.jpg'.format(im_name.split('.')[0], j)
                 num_trying += 1
-                # print(num_trying, nTextOnImage * 6)
                 if num_trying > nTextOnImage * 20:
                     break
 
@@ -124,22 +116,20 @@ for im_name in images:
 
                 draw = ImageDraw.Draw(image)
 
-                text = getRndTxt()  # 'سلام فارسیست.'
+                text = getRndTxt()
                 text = ''.join([i for i in text if i in allowed_chars])
                 # print(text)
-                # text = 'دارند- که هم'
 
-                bidi_text = text
+                # bidi_text = text
 
                 reshaped_text = arabic_reshaper.reshape(text)  # correct its shape
                 bidi_text = get_display(reshaped_text) # correct its direction
                 not_bidi_text = text
                 text = bidi_text
-                #
-                # print(text, reshaped_text, bidi_text)
+
 
                 x0, y0 = [np.random.randint(0, image_w),
-                          np.random.randint(0, image_h)]  # 50, 100
+                          np.random.randint(0, image_h)]
 
                 w, hgetsize = font.getsize(text)
                 margin = 0
@@ -188,7 +178,6 @@ for im_name in images:
                         break
                 if no_intersect:
                     iter += 1
-                    # print(fonts[rndm])
                     rects.append(rect)
                 else:
                     continue
@@ -198,11 +187,7 @@ for im_name in images:
                 image.paste(ImageOps.colorize(Image_rotated_txt, (0,0,0), textColor),
                             (x0,y0),  Image_rotated_txt)
 
-                #########################################
-                # print('before')
-                # plt.imshow(image)
-                # plt.show()
-                # print('after')
+
                 img_fn = '{}_{}.jpg'.format(im_name.split('.')[0], j)
                 image.save('./final_dataset/{}'.format(img_fn))
 
@@ -212,13 +197,8 @@ for im_name in images:
 
                 start = 0
                 start_n = 0
-                # print(text.split())
-                # print(text.split().reverse())
-                # txttt = text.split()
-                # txttt.reverse()
-                # print(text)
+
                 for i, word in enumerate(text.split()):
-                    # print(word)
                     if i == 0:
                         ll = box[0, :]
                         ul = box[1, :]
@@ -268,23 +248,17 @@ for im_name in images:
                     annot_list = boxx.reshape(-1).astype(str).tolist()
                     annot_list.append(not_bidi_text.split()[-i-1])
                     annot_text = ','.join(annot_list)
-                    # print(annot_text)
 
                     all_annot_text += annot_text + os.linesep  # '\n'
                     txt_fn = './final_dataset/{}_{}.txt'.format(im_name.split('.')[0], j)
 
 
-            # if os.path.exists('./final_dataset/{}'.format(img_fn)):
             with codecs.open(txt_fn, 'w', "utf-8") as f:
                 f.write(all_annot_text)
 
 
-            # cv2.imshow('img', im)
-            # cv2.waitKey(0)
-            # cv2.destroyAllWindows()
-            # # exit()
         except:
             import sys, traceback
-            print(text)
+            # print(text)
             traceback.print_exc(file=sys.stdout)
             continue

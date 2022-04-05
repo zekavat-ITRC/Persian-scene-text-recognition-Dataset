@@ -1,7 +1,6 @@
 import cv2
 import os
 import numpy as np
-# import re
 import arabic_reshaper
 from bidi.algorithm import get_display
 import _pickle as cp
@@ -19,7 +18,7 @@ with open('font_finall.txt', 'r') as f:
     fonts = f.read().splitlines()
 f.close()
 
-# fonts = os.listdir('./384.Font.Farsi')
+
 with codecs.open('codec_mine2.txt', 'r', 'utf-8') as f:
     allowed_chars = f.readline()
 f.close()
@@ -29,7 +28,6 @@ fonts_ok = []
 for f in fonts:
     try:
         f = os.path.join('./384.Font.Farsi', f)
-        # print(f)
         tmpFont = ImageFont.truetype(f, 30, encoding='unic')
         fonts_ok.append(f)
     except:
@@ -61,9 +59,8 @@ def getRndTxt():
     n_con_words = ' '.join(news.split()[ithWord:ithWord+num_word])
     return n_con_words
 
-imfolder_path = r'E:\alimoradi\image_pred_project\synthtext\bg_img'
-imfolder_path = '/home/alimoradi/scene_text_dataset/bg_img' ##########################################
-# imfolder_path = './'
+imfolder_path = 'bg_img'
+
 
 with open('imnames.cp', 'rb') as f:
   filtered_imnames = set(cp.load(f))
@@ -71,7 +68,8 @@ f.close()
 print(len(filtered_imnames))
 
 images = os.listdir(imfolder_path)
-created = os.listdir('./final_dataset')
+os.makedirs('./word_final_dataset', exist_ok=True)
+created = os.listdir('./word_final_dataset')
 created = ['_'.join(i.split('.')[0].split('_')[:-1]) for i in created if i.split('.')[-1] == 'txt']
 format = [".jpg", ".png", ".jpeg"]
 num_using_img = 1
@@ -88,14 +86,13 @@ for im_name in images:
     print(im_name)
     im_path = os.path.join(imfolder_path, im_name)
     for j in range(num_using_img):
-        # print('\n', im_path)
         image = Image.open(im_path)
         if image.mode in ("RGBA", "P"):
             image = image.convert("RGB")
         image_h = np.array(image).shape[0]
         image_w = np.array(image).shape[1]
 
-        nTextOnImage = 10 ## np.random.randint(2, 6)
+        nTextOnImage = 10
 
 
         rects = []
@@ -103,11 +100,9 @@ for im_name in images:
         all_annot_text = ''
         num_trying = 0
         while iter < nTextOnImage:
-            # print(iter, nTextOnImage)
-            txt_fn = './final_dataset/{}_{}.txt'.format(im_name.split('.')[0], j)
+            txt_fn = './word_final_dataset/{}_{}.txt'.format(im_name.split('.')[0], j)
             img_fn = '{}_{}.jpg'.format(im_name.split('.')[0], j)
             num_trying += 1
-            # print(num_trying, nTextOnImage * 6)
             if num_trying > nTextOnImage * 3:
                 break
 
@@ -121,28 +116,21 @@ for im_name in images:
 
             draw = ImageDraw.Draw(image)
 
-            text = getRndTxt()  # 'سلام فارسیست.'
+            text = getRndTxt()
             text = ''.join([i for i in text if i in allowed_chars])
             while len(text) < 3:
-                text = getRndTxt()  # 'سلام فارسیست.'
+                text = getRndTxt()
                 text = ''.join([i for i in text if i in allowed_chars])
-                # print(text)
 
-
-            # print(text)
 
             bidi_text = text
 
             # reshaped_text = arabic_reshaper.reshape(text)  # correct its shape
             # bidi_text = get_display(reshaped_text) # correct its direction
 
-            # text = 'اشیاء'
-            # bidi_text = get_display(text)
-            #
-            # print(text, reshaped_text, bidi_text)
 
             x0, y0 = [np.random.randint(0, image_w),
-                      np.random.randint(0, image_h)]  # 50, 100
+                      np.random.randint(0, image_h)]
 
             w, hgetsize = font.getsize(bidi_text)
             margin = 0
@@ -160,7 +148,7 @@ for im_name in images:
             hh, ww = np.array(Image_rotated_txt).shape
 
 
-            rect = ((x0+ww/2, y0+hh/2), (w, h), -angle) #ww/2, hh/2 ithink is not center of rotated rectangle
+            rect = ((x0+ww/2, y0+hh/2), (w, h), -angle)
             rect_AA = ((x0+ww/2, y0+hh/2), (ww, hh), 0)
             image_rect = ((image_w/2,image_h/2), (image_w,image_h), 0)
 
@@ -192,7 +180,6 @@ for im_name in images:
                     break
             if no_intersect:
                 iter += 1
-                # print(fonts[rndm])
                 rects.append(rect_AA)
             else:
                 continue
@@ -202,16 +189,10 @@ for im_name in images:
             image.paste(ImageOps.colorize(Image_rotated_txt, (0,0,0), textColor),
                         (x0,y0),  Image_rotated_txt)
             word_im = image.crop((x0, y0, x0+Image_rotated_txt.size[0], y0+Image_rotated_txt.size[1]))
-            # draw.rectangle([x0, y0, x0+Image_rotated_txt.size[0], y0+Image_rotated_txt.size[1]], outline=255, width=3)
-            # plt.imshow(image)
-            # plt.show()
-            # plt.imshow(word_im)
-            # plt.show()
-            # # exit()
 
 
             img_fn = '{}_{}.jpg'.format(im_name.split('.')[0], iter)
-            word_im.save('./final_dataset/{}'.format(img_fn))
-            with codecs.open('./final_dataset/'+img_fn[:-3]+'txt', 'w', 'utf-8') as f:
+            word_im.save('./word_final_dataset/{}'.format(img_fn))
+            with codecs.open('./word_final_dataset/'+img_fn[:-3]+'txt', 'w', 'utf-8') as f:
                 f.write(text)
             f.close()
