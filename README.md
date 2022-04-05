@@ -48,6 +48,18 @@ gdown --id 1V-r4a1XZVf-3QHcD_4eBBQy6IXQTgvfw
 ```
 You can also get the dataset from [our website](http://zekavat.itrc.ac.ir/)
 
+
+## Requirements
+If you want to create your own dataset please install following packages:
+```
+opencv-python
+numpy
+arabic-reshaper
+python-bidi
+matplotlib
+Pillow
+scikit-learn
+```
 ## Create your own scene text images dataset
 To create your own dataset you can run synthText.py and if the shape of text in images is incorrect you can run synthText_forLinux.py instead.
 You can also provide different background images, text source, fonts, and colors.
