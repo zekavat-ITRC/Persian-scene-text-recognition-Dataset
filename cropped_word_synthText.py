@@ -125,8 +125,8 @@ for im_name in images:
 
             bidi_text = text
 
-            # reshaped_text = arabic_reshaper.reshape(text)  # correct its shape
-            # bidi_text = get_display(reshaped_text) # correct its direction
+            reshaped_text = arabic_reshaper.reshape(text)  # correct its shape
+            bidi_text = get_display(reshaped_text) # correct its direction
 
 
             x0, y0 = [np.random.randint(0, image_w),
