@@ -1,12 +1,7 @@
-# import cv2
-import os, shutil
+import os
 import numpy as np
-from sklearn.cluster import MiniBatchKMeans
-from sklearn.neighbors import NearestNeighbors
-import pandas as pd
-from PIL import Image, ImageFont, ImageDraw, ImageOps
+from PIL import Image, ImageFont, ImageDraw
 import matplotlib.pyplot as plt
-import pickle
 import codecs
 import arabic_reshaper
 from bidi.algorithm import get_display
