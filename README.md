@@ -10,9 +10,13 @@ The "demo.ipynb" is provided to get background images and using them to create d
 
 # Download our dataset
 We have two datasets:
+
 a) cropped word images (for text recognition)
-use scene_word_dataset.zip for images and annotation files. An attotan file (gt.txt) is also provided. Each line of this file includes one of cropped word images and the text in that image in double quotation and are separated with comma.
+
+use scene_word_dataset.zip for images and annotation files. An annotation file (gt.txt) is also provided. Each line of this file includes one of cropped word images and the text in that image in double quotation and are separated with comma.
+
 b) scene text images (for text detection and end-to-end text recognition)
+
 unzip scene_text_dataset.zip (scene_text_dataset.z01 is needed too) for images and annotation files
 
 # Create your own scene text images dataset
