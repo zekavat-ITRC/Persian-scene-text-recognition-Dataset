@@ -14,6 +14,7 @@ We provide two kinds of datasets:
 
 ## Demo for getting background images, creating dataset, reading images and annotation files, displaying images
 The "demo.ipynb" is provided to get background images and using them to create dataset. At the end of this file, images and annotation files are read and use to display images and add a bounding box for each word.
+You can open it in google colab openning [this link](https://colab.research.google.com/drive/1f9-zoJnxzmfKoffOPG4bTbDQAJ4o9E_h?usp=sharing).
 
 
 ## Download our dataset
