@@ -2,7 +2,9 @@
 
 We provide a persian synthetic scene text images which can be used for text detection, text recognition, and end-to-end text recognition model.
 We provide two kinds of datasets:
+
 a) cropped word images (for text recognition)
+
 b) scene text images (for text detection and end-to-end text recognition)
 
 The "demo.ipynb" is provided to get background images and using them to create dataset. at the end of this file images and annotation files are read and use to display images and add a bounding box for each word.
