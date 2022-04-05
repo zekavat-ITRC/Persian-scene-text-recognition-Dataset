@@ -5,9 +5,18 @@ import matplotlib.pyplot as plt
 import codecs
 import arabic_reshaper
 from bidi.algorithm import get_display
+from matplotlib.pyplot import figure
 
+import argparse
+parser = argparse.ArgumentParser(description='Process some integers.')
 
-path_valid = './final_dataset'
+# Adding Arguments
+parser.add_argument('path', type=str, default='./word_final_dataset',
+                    help='path to folder containing images and annotation files')
+
+args = parser.parse_args()
+
+path_valid = args.path
 
 cntr = 0
 for img in os.listdir(path_valid):
@@ -25,24 +34,10 @@ for img in os.listdir(path_valid):
     d = ImageDraw.Draw(im)
 
     with codecs.open(os.path.join(path_valid, img.split('.')[0]+'.txt'), 'r', "utf-8") as f:
-        ann = f.read().splitlines()
+        ann = f.read().splitlines()[0]
 
-    for i in ann:
-        splits = i.split(',')
-        print(i)
-
-        # d.polygon([int(cor) for cor in i.split(',')[:8]], outline=(100, 100, 40), )
-        d.line([int(cor) for cor in i.split(',')[:8]] + [int(cor) for cor in i.split(',')[:2]], fill="red",
-               width=min(im.size[0], im.size[1]) // 250)
-        txt = i.split(',')[-1]
-
-        reshaped_text = arabic_reshaper.reshape(txt)  # correct its shape
-        bidi_text = get_display(reshaped_text)  # correct its direction
-
-        font = ImageFont.truetype('384.Font.Farsi/KoodakB.ttf',
-                                  im.size[1] // 15, encoding='unic')
-
-        d.text((int(splits[2]), int(splits[3]) + im.size[0]//20), bidi_text, font=font, fill=255)
+    txt = ann.split(',')
+    print(txt)
 
 
     figure(figsize=(8, 6), dpi=80)
