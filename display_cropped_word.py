@@ -11,7 +11,7 @@ import argparse
 parser = argparse.ArgumentParser(description='Process some integers.')
 
 # Adding Arguments
-parser.add_argument('path', type=str, default='./word_final_dataset',
+parser.add_argument('--path', type=str, default='./word_final_dataset',
                     help='path to folder containing images and annotation files')
 
 args = parser.parse_args()
