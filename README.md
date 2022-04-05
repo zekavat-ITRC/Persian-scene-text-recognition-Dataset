@@ -30,6 +30,8 @@ pip install --upgrade gdown
 gdown --id 1oXB7667IZ0Iy4zceXDyUNr5SQwmemOSM
 ```
 
+You can also get the dataset from [our website](http://zekavat.itrc.ac.ir/)
+
 
 The scene_word_dataset.zip includes images and annotation files. An annotation file (gt.txt) is also provided. Each line of this file includes the name of one of the cropped word images and the text in that image in double quotation. The name and the text are separated with comma.
 
@@ -43,6 +45,7 @@ You can get the file this way:
 pip install --upgrade gdown
 gdown --id 1V-r4a1XZVf-3QHcD_4eBBQy6IXQTgvfw
 ```
+You can also get the dataset from [our website](http://zekavat.itrc.ac.ir/)
 
 ## Create your own scene text images dataset
 To create your own dataset you can run synthText.py and if the shape of text in images is incorrect you can run synthText_forLinux.py instead.
