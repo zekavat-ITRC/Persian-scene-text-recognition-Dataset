@@ -54,7 +54,7 @@ If you want to use same background images that we used and provided from [this r
 ```
 sudo apt-get install aria2 -q
 aria2c https://academictorrents.com/download/2dba9518166cbd141534cbf381aa3e99a087e83c.torrent --allow-overwrite=true --select-file=1 --seed-time=0 -q
-tar -zxvf bg_img.tar.gz
+tar -zxvf ./SynthText/bg_data/bg_img.tar.gz
 ```
 
 ## Create your own cropped word images dataset
