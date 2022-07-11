@@ -11,6 +11,8 @@ from colorpair import getColorText
 
 import matplotlib.font_manager
 
+from poisson_reconstruct import blit_images
+
 
 win_fonts = matplotlib.font_manager.findSystemFonts(fontpaths=None, fontext='ttf')
 
@@ -64,7 +66,6 @@ imfolder_path = 'bg_img'
 
 with open('imnames.cp', 'rb') as f:
   filtered_imnames = set(cp.load(f))
-f.close()
 print(len(filtered_imnames))
 
 images = os.listdir(imfolder_path)
@@ -87,8 +88,12 @@ for im_name in images:
     im_path = os.path.join(imfolder_path, im_name)
     for j in range(num_using_img):
         image = Image.open(im_path)
-        if image.mode in ("RGBA", "P"):
+        if image.mode in ("RGBA", "P", "CMYK"):
             image = image.convert("RGB")
+        if image.mode in ("L",):
+            im = np.array(image)
+            im = np.repeat(im[:, :, None], 3, axis=2)
+            image = Image.fromarray(im)
         image_h = np.array(image).shape[0]
         image_w = np.array(image).shape[1]
 
@@ -186,10 +191,16 @@ for im_name in images:
 
             textColor = getColorText(rec_avg_color)
 
-            image.paste(ImageOps.colorize(Image_rotated_txt, (0,0,0), textColor),
-                        (x0,y0),  Image_rotated_txt)
-            word_im = image.crop((x0, y0, x0+Image_rotated_txt.size[0], y0+Image_rotated_txt.size[1]))
+            # image.paste(ImageOps.colorize(Image_rotated_txt, (0,0,0), textColor),
+            #             (x0,y0),  Image_rotated_txt)
+            # word_im = image.crop((x0, y0, x0 + Image_rotated_txt.size[0], y0 + Image_rotated_txt.size[1]))
 
+            image_arr = np.array(image)
+            im_back = image_arr[y0:y0 + hh, x0:x0 + ww, :]
+            im_top = np.array(ImageOps.colorize(Image_rotated_txt, (0, 0, 0), textColor))
+            l_out = blit_images(im_top, im_back.copy(), mode='src', scale_grad=3.)
+            # image_arr[y0:y0 + hh, x0:x0 + ww, :] = l_out
+            word_im = Image.fromarray(l_out)
 
             img_fn = '{}_{}.jpg'.format(im_name.split('.')[0], iter)
             word_im.save('./word_final_dataset/{}'.format(img_fn))
