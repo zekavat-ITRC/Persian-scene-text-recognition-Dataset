@@ -85,9 +85,8 @@ If you want to use same background images that we used, see [here](https://githu
 ## Display images and reading annotation file
 To display images you can run one of these commands:
 ```
-python display_image_txt.py --path 'final_dataset'          # for displaying scene text dataset that you have created running synthText.py
-python display_image_txt.py --path 'scene_text_dataset'     # for displaying our scene text dataset that you have downloaded
-python display_cropped_word.py --path 'word_final_dataset'  # for displaying cropped word dataset that you have created running cropped_word_synthText.py
-python display_cropped_word.py --path 'scene_word_dataset'  # for displaying our cropped word dataset that you have downloaded
+python display_image_txt.py --path 'path_to_dataset_dir'          # for displaying scene text dataset
+python display_cropped_word.py --path 'path_to_dataset_dir'  # for displaying cropped word dataset
+
 
 ```
