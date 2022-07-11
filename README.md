@@ -86,7 +86,7 @@ If you want to use same background images that we used, see [here](https://githu
 To display images you can run one of these commands:
 ```
 python display_image_txt.py --path 'path_to_dataset_dir'          # for displaying scene text dataset
-python display_cropped_word.py --path 'path_to_dataset_dir'  # for displaying cropped word dataset
+python display_cropped_word.py --path 'path_to_dataset_dir'       # for displaying cropped word dataset
 
 
 ```
