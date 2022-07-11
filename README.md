@@ -5,7 +5,7 @@ We provide two kinds of datasets:
 
 **a) cropped word images (for text recognition)**
 
-![sample image of cropped word images](scene_word_images.png)
+![sample image of cropped word images](scene_word_images.jpg)
 
 **b) scene text images (for text detection and end-to-end text recognition)**
 
