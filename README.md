@@ -28,7 +28,7 @@ Unzip scene_text_dataset.zip for images and annotation files.
 You can get the file this way:
 ```
 pip install --upgrade gdown
-gdown --id 1VrcwsgXlBYcWk6ZNj8u4mWlWvhlGiCvj
+gdown 1VrcwsgXlBYcWk6ZNj8u4mWlWvhlGiCvj
 ```
 
 
@@ -37,7 +37,7 @@ The scene_word_dataset.tar.gz includes images and annotation files. An annotatio
 you can also access to our validation dataset using [this google drive link](https://drive.google.com/file/d/1GIh5_RGOz1g5161vB0FTNIjaal-CRkif/view?usp=sharing).
 You can get the file this way:
 ```
-gdown --id 1GIh5_RGOz1g5161vB0FTNIjaal-CRkif
+gdown 1GIh5_RGOz1g5161vB0FTNIjaal-CRkif
 ```
 
 **b) scene text images (for text detection and end-to-end text recognition)**
@@ -47,13 +47,13 @@ Unzip scene_text_dataset.zip for images and annotation files.
 
 You can get the file this way:
 ```
-gdown --id 1V-_____________________gvfw
+gdown 1V-_____________________gvfw
 ```
 
 you can also access to our validation dataset using [this google drive link](https://drive.google.com/file/d/1HV2GMkh8S1UeckzpELb1rCrUJPr5XpQu/view?usp=sharing).
 You can get the file this way:
 ```
-gdown --id 1HV2GMkh8S1UeckzpELb1rCrUJPr5XpQu
+gdown 1HV2GMkh8S1UeckzpELb1rCrUJPr5XpQu
 ```
 
 ## Requirements
