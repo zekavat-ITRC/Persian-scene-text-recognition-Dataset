@@ -42,12 +42,12 @@ gdown 1GIh5_RGOz1g5161vB0FTNIjaal-CRkif
 
 **b) scene text images (for text detection and end-to-end text recognition)**
 
-The scene_text_dataset.tar.gz can be accessed [this google drive link](______________).
+The scene_text_dataset.tar.gz can be accessed [this google drive link](https://drive.google.com/file/d/1HUdce0Akv1sz25qMUN-GBGikCPXiZdVG/view?usp=sharing).
 Unzip scene_text_dataset.zip for images and annotation files.
 
 You can get the file this way:
 ```
-gdown 1V-_____________________gvfw
+gdown 1HUdce0Akv1sz25qMUN-GBGikCPXiZdVG
 ```
 
 you can also access to our validation dataset using [this google drive link](https://drive.google.com/file/d/1HV2GMkh8S1UeckzpELb1rCrUJPr5XpQu/view?usp=sharing).
