@@ -22,32 +22,39 @@ We have two datasets:
 
 **a) cropped word images (for text recognition)**
 
-The scene_word_dataset.zip can be accessed [this google drive link](https://drive.google.com/file/d/1oXB7667IZ0Iy4zceXDyUNr5SQwmemOSM/view?usp=sharing).
+The scene_word_dataset.tar.gz can be accessed [this google drive link](https://drive.google.com/file/d/1VrcwsgXlBYcWk6ZNj8u4mWlWvhlGiCvj/view?usp=sharing).
 Unzip scene_text_dataset.zip for images and annotation files.
 
 You can get the file this way:
 ```
 pip install --upgrade gdown
-gdown --id 1oXB7667IZ0Iy4zceXDyUNr5SQwmemOSM
+gdown --id 1VrcwsgXlBYcWk6ZNj8u4mWlWvhlGiCvj
 ```
 
-You can also get the dataset from [our website](http://zekavat.itrc.ac.ir/)
 
+The scene_word_dataset.tar.gz includes images and annotation files. An annotation file (gt.txt) is also provided. Each line of this file includes the name of one of the cropped word images and the text in that image in double quotation. The name and the text are separated with comma.
 
-The scene_word_dataset.zip includes images and annotation files. An annotation file (gt.txt) is also provided. Each line of this file includes the name of one of the cropped word images and the text in that image in double quotation. The name and the text are separated with comma.
+you can also access to our validation dataset using [this google drive link](https://drive.google.com/file/d/1GIh5_RGOz1g5161vB0FTNIjaal-CRkif/view?usp=sharing).
+You can get the file this way:
+```
+gdown --id 1GIh5_RGOz1g5161vB0FTNIjaal-CRkif
+```
 
 **b) scene text images (for text detection and end-to-end text recognition)**
 
-The scene_text_dataset.zip can be accessed [this google drive link](https://drive.google.com/file/d/1V-r4a1XZVf-3QHcD_4eBBQy6IXQTgvfw/view?usp=sharing).
+The scene_text_dataset.tar.gz can be accessed [this google drive link](______________).
 Unzip scene_text_dataset.zip for images and annotation files.
 
 You can get the file this way:
 ```
-pip install --upgrade gdown
-gdown --id 1V-r4a1XZVf-3QHcD_4eBBQy6IXQTgvfw
+gdown --id 1V-_____________________gvfw
 ```
-You can also get the dataset from [our website](http://zekavat.itrc.ac.ir/)
 
+you can also access to our validation dataset using [this google drive link](https://drive.google.com/file/d/1HV2GMkh8S1UeckzpELb1rCrUJPr5XpQu/view?usp=sharing).
+You can get the file this way:
+```
+gdown --id 1HV2GMkh8S1UeckzpELb1rCrUJPr5XpQu
+```
 
 ## Requirements
 If you want to create your own dataset please install following packages:
