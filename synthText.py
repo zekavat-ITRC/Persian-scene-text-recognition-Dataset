@@ -11,8 +11,10 @@ from colorpair import getColorText
 
 import matplotlib.font_manager
 
+from poisson_reconstruct import blit_images
 
-win_fonts = matplotlib.font_manager.findSystemFonts(fontpaths=None, fontext='ttf')
+
+# win_fonts = matplotlib.font_manager.findSystemFonts(fontpaths=None, fontext='ttf')
 
 with open('font_finall.txt', 'r') as f:
     fonts = f.read().splitlines()
@@ -87,8 +89,13 @@ for im_name in images:
     for j in range(num_using_img):
         try:
             image = Image.open(im_path)
-            if image.mode in ("RGBA", "P"):
+            # print(image.mode)
+            if image.mode in ("RGBA", "P", "CMYK"):
                 image = image.convert("RGB")
+            if image.mode in ("L", ):
+                im = np.array(image)
+                im = np.repeat(im[:,:, None], 3, axis=2)
+                image = Image.fromarray(im)
             image_h = np.array(image).shape[0]
             image_w = np.array(image).shape[1]
 
@@ -184,14 +191,21 @@ for im_name in images:
 
                 textColor = getColorText(rec_avg_color)
 
-                image.paste(ImageOps.colorize(Image_rotated_txt, (0,0,0), textColor),
-                            (x0,y0),  Image_rotated_txt)
+                # image.paste(ImageOps.colorize(Image_rotated_txt, (0,0,0), textColor),
+                #             (x0,y0),  Image_rotated_txt)
+                
+                image_arr = np.array(image)
+                im_back = image_arr[y0:y0 + hh, x0:x0 + ww, :]
+                im_top = np.array(ImageOps.colorize(Image_rotated_txt, (0, 0, 0), textColor))
+                l_out = blit_images(im_top, im_back.copy(), mode='src', scale_grad=3.)
+                image_arr[y0:y0 + hh, x0:x0 + ww, :] = l_out
+                image = Image.fromarray(image_arr)
 
 
                 img_fn = '{}_{}.jpg'.format(im_name.split('.')[0], j)
                 image.save('./final_dataset/{}'.format(img_fn))
 
-                im = cv2.imread('./final_dataset/{}.jpg'.format(img_fn))
+                im = cv2.imread('./final_dataset/{}'.format(img_fn))
                 cv2.rectangle(im, pt1=(x0,y0), pt2=(ww+x0,hh+y0), color=200, thickness=2)
 
 
